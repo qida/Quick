@@ -1,0 +1,60 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctr="clr-namespace:Kindle_Quick.Controls"   
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    x:Name="WindowMain" 
+    x:Class="Kindle_Quick.WinMain"
+    xmlns:c="clr-namespace:Kindle_Quick.Entity"
+    Title="Quick" Loaded="Window_Loaded" AllowDrop="True" WindowStyle="None" Height="291.684" Width="662.825" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Topmost="True" Background="{x:Null}"   AllowsTransparency="True" Foreground="#FF0F24F5"  Drop="WindowMain_Drop" Initialized="WindowMain_Initialized" IsVisibleChanged="WindowMain_IsVisibleChanged">
+
+    <Window.Resources>    
+        <DataTemplate x:Key="ItemTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0 3 0 3">
+                <Image Width="30" Height="30" Stretch="Fill" Source="{Binding Path=Icon,Mode=OneTime, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text ="{Binding Path=Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid x:Name="grid">
+        <Border x:Name="border" BorderBrush="Black"  
+                BorderThickness="0" 
+                Background="{DynamicResource color}" 
+                RenderTransformOrigin="0.502,0.604" 
+                Margin="69.737,71.846,63.158,0" 
+                Height="133.632"
+                VerticalAlignment="Top" >
+            <Border.Effect>
+                <BlurEffect Radius="150"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel>
+            <StackPanel.Resources>
+                <ResourceDictionary Source="/Quick;component/Styles/AutoComplete.Styles.xaml" />
+            </StackPanel.Resources>
+           
+            <ctr:AutoComplete x:Name="autoCities"  				
+			PatternChanged="autoCities_PatternChanged" 
+			Delay="10" 
+			Margin="164,120,134,140"
+			FontSize="20"          
+			FontWeight="Bold" 
+			Background="Transparent" 
+			Foreground="Black"                         
+			BorderThickness="0"			
+			TabIndex="0" 
+            DisplayPropery="Name"                     
+            SelectedValuePath="Name" 
+            Style="{StaticResource AutoCompleteComboBox}"            
+            MaxRecords="15"    
+            ItemTemplate="{StaticResource ItemTemplate}" PreviewKeyDown="autoCities_PreviewKeyDown" IsEditable="True" IsSynchronizedWithCurrentItem="False" >
+                <ctr:AutoComplete.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Gray" />
+                </ctr:AutoComplete.Resources>
+            </ctr:AutoComplete>
+            <!-- can also do binding on selected value -->
+        </StackPanel>
+    </Grid>
+</Window>

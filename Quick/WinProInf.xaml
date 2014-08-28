@@ -1,0 +1,32 @@
+﻿<Window x:Class="Kindle_Quick.WindowBase"
+        xmlns:base="clr-namespace:Kindle_Quick"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        Title="软件信息" Height="411.94" Width="632.837">
+    <DataGrid Name="dataGrid1"  AutoGenerateColumns="False" Margin="25,25,25,25" ItemsSource="{Binding autoCompletionList}" 
+          CanUserReorderColumns="True"
+          CanUserResizeColumns="True"
+          CanUserResizeRows="True"
+           CanUserSortColumns="True"
+              CanUserAddRows="True" 
+             IsReadOnly="False"
+              
+              >
+        <DataGrid.Columns>
+            <!--<DataGridTemplateColumn Header="操作" Width="40">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <CheckBox ></CheckBox>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>-->
+            <!--<DataGridTextColumn Width="*" Header="软件名称" Binding ="{Binding Path=Name}"/>
+            <DataGridTextColumn Width="*" Header="拼英检索"  Binding="{Binding PingYing}"/>
+            <DataGridTextColumn Width="2*" Header="软件路径"  Binding="{Binding Link}"/>-->
+
+            <DataGridTextColumn Width=" *" Header="软件名称" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <DataGridTextColumn Width="*" Header="拼英检索"  Binding="{Binding PingYing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <DataGridTextColumn Width="2*" Header="软件路径"  Binding="{Binding Link, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+</Window>
